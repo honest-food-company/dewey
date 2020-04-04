@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "declaration": true,
+    "target": "esnext",
+    "lib": ["dom", "es2015", "es2017", "es2019"]
+  },
+  "include": ["./src/**/*"]
+}
