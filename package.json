@@ -1,6 +1,6 @@
 {
   "name": "dewey",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Make lerna.js work for serverless",
   "main": "dist/index.js",
   "scripts": {
