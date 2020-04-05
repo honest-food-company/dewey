@@ -1,7 +1,6 @@
-# dewey
 Dewey is a simple system for replacing symlinks in lerna with the actual local packages.  It uses introspection to find what lerna packages exist.
 
-[Documentation](docs/globals.md)
+[Documentation]()
 
 ### What issue is dewey solving?
 The typical workflow for a lambda function is: develop->package->upload->run.

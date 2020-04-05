@@ -7,11 +7,11 @@ const fsx = require("fs-extra");
  * that file into its node_modules.
  *
  * @async
- * @param {InputInterface} input - an input object for settings
+ * @param {@link InputInterface} input - an input object for settings
  * @return {Promise<void>} - this is a simple void function
  */
 async function main(input) {
-    const lernaConfigLocation = (input && (input === null || input === void 0 ? void 0 : input.packageDir)) || `${process.cwd()}/lerna.json`;
+    const lernaConfigLocation = (input && (input === null || input === void 0 ? void 0 : input.lernaLocation)) || `${process.cwd()}/lerna.json`;
     const lernaConfig = JSON.parse(fs_1.readFileSync(lernaConfigLocation).toString());
     // striping all the directory commands
     const packageSubDir = lernaConfig.packages.map((packageName) => packageName.replace('/*', '').replace('//', ''));

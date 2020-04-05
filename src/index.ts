@@ -19,8 +19,12 @@ interface CopyToInterface {
   to: string;
 }
 
+/**
+ * The input interface
+ * @param lernaLocation - the location  of the lerna.json you would like to use
+ */
 interface InputInterface {
-  packageDir?: string;
+  lernaLocation?: string;
 }
 
 /**
@@ -28,12 +32,12 @@ interface InputInterface {
  * that file into its node_modules.
  *
  * @async
- * @param {InputInterface} input - an input object for settings
+ * @param {@link InputInterface} input - an input object for settings
  * @return {Promise<void>} - this is a simple void function
  */
 async function main(input?: InputInterface): Promise<void> {
   const lernaConfigLocation =
-    (input && input?.packageDir) || `${process.cwd()}/lerna.json`;
+    (input && input?.lernaLocation) || `${process.cwd()}/lerna.json`;
   const lernaConfig = JSON.parse(readFileSync(lernaConfigLocation).toString());
   // striping all the directory commands
   const packageSubDir = lernaConfig.packages.map((packageName: string) =>
