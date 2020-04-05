@@ -1,13 +1,10 @@
 import { readFileSync, readdirSync } from 'fs';
 import * as fsx from 'fs-extra';
 
-/**
- * grabs the lerna config, and then does a deep search of all packages and hard copies
- * the node_modules that need to be
- */
-
 interface PackageJsonMapInterface {
+  /** the location of the package.json **/
   location: string;
+  /** the only 2 sections of package.json that we need to parse **/
   content: {
     name: string;
     dependencies: object;
@@ -15,7 +12,9 @@ interface PackageJsonMapInterface {
 }
 
 interface CopyToInterface {
+  /** the directory of the actual module **/
   copy: string;
+  /** the directory of the node_module that code should be copied too **/
   to: string;
 }
 
