@@ -1,6 +1,6 @@
 Dewey is a simple system for replacing symlinks in lerna with the actual local packages.  It uses introspection to find what lerna packages exist.
 
-[Documentation](https://samrocksc.github.io/dewey/)
+[Documentation](https://samrocksc.github.io/dewey/index.html)
 
 ### What issue is dewey solving?
 The typical workflow for a lambda function is: develop->package->upload->run.
