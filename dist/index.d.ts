@@ -1,8 +1,5 @@
-/**
- * The input interface
- * @param lernaLocation - the location  of the lerna.json you would like to use
- */
 interface InputInterface {
+    /** The alternate location to the lerna.json **/
     lernaLocation?: string;
 }
 /**
