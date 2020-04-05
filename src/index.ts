@@ -1,5 +1,5 @@
-const { readFileSync, readdirSync } = require('fs');
-const fsx = require('fs-extra');
+import { readFileSync, readdirSync } from 'fs';
+import * as fsx from 'fs-extra';
 
 /**
  * grabs the lerna config, and then does a deep search of all packages and hard copies
@@ -19,8 +19,21 @@ interface CopyToInterface {
   to: string;
 }
 
-const main = async (lernaJson?: string) => {
-  const lernaConfigLocation = lernaJson || `${process.cwd()}/lerna.json`;
+interface InputInterface {
+  packageDir?: string;
+}
+
+/**
+ * Checks package.json recursively in a lerna project and copies
+ * that file into its node_modules.
+ *
+ * @async
+ * @param {InputInterface} input - an input object for settings
+ * @return {Promise<void>} - this is a simple void function
+ */
+async function main(input?: InputInterface): Promise<void> {
+  const lernaConfigLocation =
+    (input && input?.packageDir) || `${process.cwd()}/lerna.json`;
   const lernaConfig = JSON.parse(readFileSync(lernaConfigLocation).toString());
   // striping all the directory commands
   const packageSubDir = lernaConfig.packages.map((packageName: string) =>
@@ -88,7 +101,6 @@ const main = async (lernaJson?: string) => {
     },
   );
   Promise.all(fileCopyArray);
-};
+}
 
-module.exports = main;
-module.exports.default = main;
+export default main;

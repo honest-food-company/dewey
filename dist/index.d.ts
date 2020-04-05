@@ -1,18 +1,13 @@
-declare const readFileSync: any, readdirSync: any;
-declare const fsx: any;
+interface InputInterface {
+    packageDir?: string;
+}
 /**
- * grabs the lerna config, and then does a deep search of all packages and hard copies
- * the node_modules that need to be
+ * Checks package.json recursively in a lerna project and copies
+ * that file into its node_modules.
+ *
+ * @async
+ * @param {InputInterface} input - an input object for settings
+ * @return {Promise<void>} - this is a simple void function
  */
-interface PackageJsonMapInterface {
-    location: string;
-    content: {
-        name: string;
-        dependencies: object;
-    };
-}
-interface CopyToInterface {
-    copy: string;
-    to: string;
-}
-declare const main: (lernaJson?: string) => Promise<void>;
+declare function main(input?: InputInterface): Promise<void>;
+export default main;

@@ -1,17 +1,27 @@
-const { readFileSync, readdirSync } = require('fs');
-const fsx = require('fs-extra');
-const main = async (lernaJson) => {
-    const lernaConfigLocation = lernaJson || `${process.cwd()}/lerna.json`;
-    const lernaConfig = JSON.parse(readFileSync(lernaConfigLocation).toString());
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = require("fs");
+const fsx = require("fs-extra");
+/**
+ * Checks package.json recursively in a lerna project and copies
+ * that file into its node_modules.
+ *
+ * @async
+ * @param {InputInterface} input - an input object for settings
+ * @return {Promise<void>} - this is a simple void function
+ */
+async function main(input) {
+    const lernaConfigLocation = (input && (input === null || input === void 0 ? void 0 : input.packageDir)) || `${process.cwd()}/lerna.json`;
+    const lernaConfig = JSON.parse(fs_1.readFileSync(lernaConfigLocation).toString());
     // striping all the directory commands
     const packageSubDir = lernaConfig.packages.map((packageName) => packageName.replace('/*', '').replace('//', ''));
     // grabs packages directory array and flattens it
     const packagesDir = packageSubDir
-        .map((location) => readdirSync(`${location}`).map((packageName) => `${location}/${packageName}`))
+        .map((location) => fs_1.readdirSync(`${location}`).map((packageName) => `${location}/${packageName}`))
         .flat();
     // Grabs each of the lerna package's package.json and returns it with its location
     const packageJsonMap = packagesDir.map((packageLocation) => {
-        const stringedJson = readFileSync(`${process.cwd()}/${packageLocation}/package.json`).toString();
+        const stringedJson = fs_1.readFileSync(`${process.cwd()}/${packageLocation}/package.json`).toString();
         return {
             location: packageLocation,
             content: JSON.parse(stringedJson),
@@ -46,7 +56,6 @@ const main = async (lernaJson) => {
         await fsx.copy(copy, to); // copies code into node_modules
     });
     Promise.all(fileCopyArray);
-};
-module.exports = main;
-module.exports.default = main;
+}
+exports.default = main;
 //# sourceMappingURL=index.js.map
