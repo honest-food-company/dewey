@@ -1,6 +1,6 @@
 Dewey is a simple system for replacing symlinks in lerna with the actual local packages.  It uses introspection to find what lerna packages exist.
 
-[Documentation]()
+[Documentation](https://samrocksc.github.io/dewey/)
 
 ### What issue is dewey solving?
 The typical workflow for a lambda function is: develop->package->upload->run.
@@ -34,7 +34,6 @@ The scope of this project is to simply provide a tool for deployment and to make
 It does make use of the `fs-extra` package to remove and copy symlinks and packages
 
 ### Usage
-Using dewey is simple currently. It does support
 
 ```javascript
 const dewey = require('dewey');
