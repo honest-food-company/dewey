@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -b && npm run generate:docs",
+    "build": "tsc -b",
+    "dev": "nodemon --watch 'src/**/*' -e tsc -- -b",
+    "build:docs": "tsc -b && npm run generate:docs",
     "generate:docs": "typedoc && touch docs/.nojekyll"
   },
   "repository": {
@@ -30,6 +32,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "typedoc": "^0.17.3",
     "typescript": "^3.8.3"
