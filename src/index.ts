@@ -87,8 +87,8 @@ const getPackageDirectories = (input: string[]): string[] =>
  * packageJsonMap
  *
  * @function getPackageJsonMap
- * @param {string[]} input - [TODO:description]
- * @return {[TODO:type]} [TODO:description]
+ * @param {string[]} input - an array of string of package.jsons
+ * @return {PackageJsonMapInterface[]}
  */
 const getPackageJsonMap = (input: string[]) =>
   input.map(
