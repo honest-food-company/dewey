@@ -3,7 +3,7 @@ Dewey is a simple system for replacing symlinks in lerna with the actual local p
 [Documentation](https://samrocksc.github.io/dewey/index.html)
 
 ### What issue is dewey solving?
-The typical workflow for a lambda function is: develop->package->upload->run.
+The typical workflow for a lambda function is: develop->package->upload->run.  I personally like to call it zip and ship :P.
 
 ### TODO
 - [ ] Allow a single package to be targeted
