@@ -1,19 +1,13 @@
-Dewey is a simple system for replacing symlinks in lerna with the actual local packages.  It uses introspection to find what lerna packages exist.
+Dewey is a simple system for replacing symlinks in lerna with the actual local packages.
 
 [Documentation](https://samrocksc.github.io/dewey/index.html)
 
 ### What issue is dewey solving?
-The typical workflow for a lambda function is: develop->package->upload->run.  I personally like to call it zip and ship :P.
-
-### TODO
-- [ ] Allow a single package to be targeted
-- [ ] Allow a single directory to be targeted
-- [ ] Allow a cleanup step which ideally would just be removing packages and running lerna bootstrap.
-- [ ] Tests
+The typical workflow for a lambda function is: develop->package->upload->run.  I personally like to call it zip and ship :P.  This allows for a pre-deploy script of running dewey in your lerna project to unsymlink the data in a smart way.
 
 When developing in a monorepo of multiple functions we end up duplicating a _lot_ of code.  Dewey aims to leverage the power of [lerna](https://github.com/lerna/lerna) to be able to remove the symlinks lerna provides in mono repo `node_modules` and replace it with the actual package from the repo.  Allowing for development via symlinks, yet allowing for seemless deployment.
 ### Why is this useful?
-Dewey aims to bridge the gap between lerna and succesfully deploying shared code in a serverless project.  Lerna does not play well with serverless function deployment because of the symlinking when we are packaging our serverless functions for upload to their environments(Google Cloud Functions, AWS Lambda).  It allows us to remove the symlinks and pack the
+Dewey aims to bridge the gap between lerna and succesfully deploying shared code in a serverless project.  Lerna does not play well with serverless function deployment because of the symlinking when we are packaging our serverless functions for upload to their environments(Google Cloud Functions, AWS Lambda).  It allows us to remove the symlinks and pack the real module into our lerna packages.
 
 ### Bridging the gap for learning and deploying
 There has always beeen a huge pain point in learning serverless functions.  This allows us to realize that we can have multiple functions in one repo and and they can dependon eachother. Dewey makes lerna a viable candidate for monorepo management
@@ -38,5 +32,12 @@ It does make use of the `fs-extra` package to remove and copy symlinks and packa
 ```javascript
 const dewey = require('dewey');
 
+// Dewey will automatically search within all package.json's!
 dewey();
 ```
+### TODO
+- [ ] Honoring an ignore file with each project.
+- [ ] Allow a single package to be targeted
+- [ ] Allow a single directory to be targeted
+- [ ] Allow a cleanup step which ideally would just be removing packages and running lerna bootstrap.
+- [ ] Tests
