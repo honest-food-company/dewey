@@ -1,6 +1,6 @@
 Dewey is a simple system for replacing symlinks in lerna with the actual local packages.
 
-[Documentation](https://samrocksc.github.io/dewey/index.html)
+[Documentation](https://honest-food-company.github.io/dewey/index.html)
 
 ### What issue is dewey solving?
 The typical workflow for a lambda function is: develop->package->upload->run.  I personally like to call it zip and ship :P.  This allows for a pre-deploy script of running dewey in your lerna project to unsymlink the data in a smart way.
