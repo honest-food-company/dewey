@@ -135,6 +135,9 @@ const getPackagesToUpdate = (
 ): (CopyToInterface | undefined)[] =>
   input.packageJsonMap
     .map((packageJson) => {
+      if (!packageJson.content.dependencies) {
+        return undefined;
+      }
       const deps = input.packageNameList.map((packageName):
         | CopyToInterface
         | undefined => {
